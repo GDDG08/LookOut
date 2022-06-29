@@ -16,6 +16,7 @@ import com.gddg.lookout.databinding.FragmentSecondBinding;
 import com.gddg.lookout.utils.api.APICallback;
 import com.gddg.lookout.utils.api.APIHandler;
 import com.gddg.lookout.utils.api.javabean.BasicRTN;
+import com.gddg.lookout.utils.api.javabean.Cloud.TTS_RTN;
 import com.gddg.lookout.utils.api.javabean.User.UserLoginRTN;
 import com.google.gson.Gson;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -97,7 +98,20 @@ public class SecondFragment extends Fragment {
     static APIHandler api = new APIHandler();
     private void api_test() {
         String[] apis = getResources().getStringArray(R.array.apis);
+        APIHandler api2 = new APIHandler(1234);
 
+        api2.onUserLogin("1", "1", new APICallback() {
+            @Override
+            public void onSuccess(String msg, BasicRTN rtn, String originData) {
+                UserLoginRTN data = (UserLoginRTN) rtn;
+                data.getUserID();
+            }
+
+            @Override
+            public void onError(String info) {
+
+            }
+        });
         switch (apis[spinner_pos]) {
             case "User Login":
                 api.onUserLogin("TEST", "123456", acb_login);

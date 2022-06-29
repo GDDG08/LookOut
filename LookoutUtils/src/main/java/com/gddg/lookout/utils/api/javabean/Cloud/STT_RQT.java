@@ -17,7 +17,7 @@ public class STT_RQT extends BasicRQT {
 
     public RequestParams genParams() {
         RequestParams params = new RequestParams(getHost2() + "/cloudAPI/audio2text");
-        params.addBodyParameter("imgBase64", audioBase64);
+        params.addBodyParameter("audioBase64", audioBase64);
         return params;
     }
 }

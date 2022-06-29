@@ -1,19 +1,20 @@
 package com.gddg.lookout;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.provider.SyncStateContract;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,9 +25,6 @@ import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-
-import android.view.Menu;
-import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         regToWx();
+        initPermissions();
     }
 
     @Override
@@ -117,6 +116,22 @@ public class MainActivity extends AppCompatActivity {
     //    public interface WXRetrListener{
 //        void onAuth(String code);
 //    }
+    private void initPermissions() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            int REQUEST_CODE_PERMISSION_STORAGE = 1;
+            String[] permissions = {
+                    Manifest.permission.RECORD_AUDIO
+            };
 
+            for (String str : permissions) {
+                if (
+                        this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    this.requestPermissions(permissions, REQUEST_CODE_PERMISSION_STORAGE);
+                    return;
+                }
+            }
+        }
+    }
 
 }
