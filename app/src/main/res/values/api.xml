@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="apis">
+        <item>User Login</item>
+        <item>User Register</item>
+        <item>User LoginWX</item>
+        <item>User Logout</item>
+        <item>User Info</item>
+        <item>User EditInfo</item>
+        <item>User EditAvatar</item>
+        <item>User EditPwd</item>
+
+        <item>News Feed</item>
+        <item>News Content</item>
+        <item>News Para</item>
+        <item>News SetInterest</item>
+        <item>News GetInterestUser</item>
+        <item>News GetInterestAll</item>
+        <item>News Click</item>
+        <item>News Love</item>
+        <item>News Star</item>
+        <item>News Dislike</item>
+
+    </string-array>
+</resources>
